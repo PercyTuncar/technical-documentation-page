@@ -8,7 +8,7 @@
 </head>
 <header>
     <nav id="navbar">
-        <header >tuncar.js doc</header>
+       <header>Doc tuncar.js</header>
         <ul>
             <li><a class="nav-link" href="#Introducción">Introducción</a></li>
             <li><a class="nav-link" href="#Getting_started">Getting started</a></li>
@@ -20,45 +20,164 @@
 </header>
 <body>
     <main id="main-doc">
-        <section class="main-section" id="Introducción">
+        <section class="main-section" id="Introducción">  
             <header>Introducción</header>
-            
-            <p></p>
-            <code></code>
+            <img src="https://newevolutiondesigns.com/images/freebies/city-facebook-cover-46.jpg" alt="">   
+          
+           
+            <p>
+                This is a built-in middleware function in Tuncar.js. It parses incoming
+                 requests with JSON payloads and is based on body-parser.
+                Returns middleware that only parses JSON and only looks at 
+                requests where the Content-Type header matches the type option. 
+                This parser accepts any Unicode encoding of the body and supports 
+                automatic inflation of gzip and deflate encodings.
+                A new body object containing the parsed data is populated on the 
+                request object after the middleware (i.e. req.body), or an empty 
+                object ({}) if there was no body to parse, the Content-Type was 
+                not matched, or an error occurred.
+            </p>
+            <code>tuncar();</code>
             <p></p>
             <li></li>
         </section>
 
         <section class="main-section" id="Getting_started">
-            <header>Getting started</header>
-            <p></p>
-            <code></code>
-            <p></p>
-            <li></li>
+           <header>Getting started</header>
+          <p>  Installing:</p>
+            <p>Assuming you’ve already installed Node.js, create a directory to hold your application, and make that your working directory.</p>
+            <code>$ mkdir myapp</code>
+            <code>cd myapp</code>
+            <p>Use the npm init command to create a package.json file for your application. For more information on how package.json works, see Specifics of npm’s package.json handling.</p>
+            <code>$ npm init</code>
+            <p>This command prompts you for a number of things, such as the name and version of your application. For now, you can simply hit RETURN to accept the defaults for most of them, with the following exception:</p>
+            <code>entry point: (index.js)</code>
+            <p>Enter app.js, or whatever you want the name of the main file to be. If you want it to be index.js, hit RETURN to accept the suggested default file name.
+            </p>
+            <p>
+                Now install Tuncar in the myapp directory and save it in the dependencies list. For example:
+            </p>
+            <code>
+                $ npm install tuncar --save
+            </code>
+            <p>
+                To install Tuncar temporarily and not add it to the dependencies list:
+            </p>
+            <code>$ npm install tuncar --no-save</code>
+            <li>Note:</li>
+            <section id="note">
+                By default with version npm 5.0+ npm install adds the module to the dependencies list in the package.json file; with earlier versions of npm, you must specify the --save option explicitly. Then, afterwards, running npm install in the app directory will automatically install modules in the dependencies list
+            </section>
         </section>
 
         <section class="main-section" id="Hello_world_example">
-            <header>Hello world example</header>
-            <p></p>
-            <code></code>
-            <p></p>
+           <header>Hello world example</header>
+            <section id="note">
+                Embedded below is essentially the simplest Tuncar app you can create. It is a single file app — not what you’d get if you use the Tuncar generator, which creates the scaffolding for a full app with numerous JavaScript files, Jade templates, and sub-directories for various purposes.
+            </section>
+                <code>const tuncar = require('tuncar')  </code> <br>
+                <code>const app = tuncar() </code> <br>
+                <code>const port = 5000 </code> <br>
+                <code> app.get('/', (req, res) => res.send('Hello World!')) </code> <br>
+                <code>app.listen(port, () => console.log(`Example app listening on port ${port}!`)) </code> <br>
+            <p>
+                This app starts a server and listens on port 3000 for connections. The app responds with “Hello World!” for requests to the root URL (/) or route. For every other path, it will respond with a 404 Not Found.
+            </p>
+            <p>
+                The example above is actually a working server: Go ahead and click on the URL shown. You’ll get a response, with real-time logs on the page, and any changes you make will be reflected in real time. This is powered by RunKit, which provides an interactive JavaScript playground connected to a complete Node environment that runs in your web browser. Below are instructions for running the same app on your local machine.
+            </p>
+            <section id="note"> 
+RunKit is a third-party service not affiliated with the Express project.
+            </section>
+            <h4>Running Locally</h4>
+            <p>
+                First create a directory named myapp, change to it and run npm init. Then install express as a dependency, as per the installation guide.
+
+In the myapp directory, create a file named app.js and copy in the code from the example above.
+            </p>
+            <section id="note">
+                The req (request) and res (response) are the exact same objects that Node provides, so you can invoke req.pipe(), req.on('data', callback), and anything else you would do without Express involved.
+            </section>
+            <p>Run the app with the following command:</p>
+            <code>$ node app.js</code>
+            <p>Then, load http://localhost:3000/ in a browser to see the output.</p>
             <li></li>
         </section>
         
+
         <section class="main-section" id="Tuncar_application_generator">
-            <header>Tuncar application generator</heder>
-            <p></p>
-            <code></code>
-            <p></p>
-            <li></li>
+            <header>Tuncar application generator</header>
+            <p>Use the application generator tool, express-generator, to quickly create an application skeleton.</p>
+            <p>The express-generator package installs the express command-line tool. Use the following command to do so:</p>
+            <code>$ npm install express-generator -g</code>
+            <p>Display the command options with the -h option:</p>
+            <ul>
+                <li>    -h, --help          output usage information</li>
+                <li>        --version       output the version number</li>
+                <li>    -e, --ejs           add ejs engine support</li>
+                <li>        --hbs           add handlebars engine support</li>
+                <li>        --pug           add pug engine support</li>
+                <li>    -H, --hogan         add hogan.js engine support</li>
+                <li>        --no-view       generate without view engine</li>
+                <li>        --git           add .gitignore</li>
+            </ul>
+            <p>For example, the following creates an Express app named myapp. The app will be created in a folder named myapp in the current working directory and the view engine will be set to Pug:</p>
+            <p>Then install dependencies:   </p>
+            <code>$ cd myapp</code>
+            <code>$ npm install</code>
+            <p>On MacOS or Linux, run the app with this command:</p>
+            <code>$ DEBUG=myapp:* npm start</code>
+            <p>On Windows, use this command:</p>
+            <code>> set DEBUG=myapp:* & npm start</code>
+            <p>Then load http://localhost:3000/ in your browser to access the app.
+
+                The generated app has the following directory structure:</p>
         </section>
+
+
 
         <section class="main-section" id="Basic_routing">
             <header>Basic routing</header>
-            <p></p>
-            <code></code>
-            <p></p>
-            <li></li>
+            <p>Routing refers to determining how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).</p>
+           <p>Each route can have one or more handler functions, which are executed when the route is matched.</p>
+            <p>Route definition takes the following structure:</p>
+            <code>app.METHOD(PATH, HANDLER)</code>
+            <p>Where:</p>
+            <li> app is an instance of express.</li>
+            <li>METHOD is an HTTP request method, in lowercase.</li>
+            <li> PATH is a path on the server.</li>
+            <li> HANDLER is the function executed when the route is matched.</li>
+            <section id="note">
+                HANDLER is the function executed when the route is matched.
+            </section>
+            <p>The following examples illustrate defining simple routes.</p>
+            <p>Respond with Hello World! on the homepage:</p>
+            <code>
+                app.get('/', function (req, res) {
+                res.send('Hello World!')
+                })
+            </code>
+            <p>Respond to POST request on the root route (/), the application’s home page:</p>
+            <code>
+                app.post('/', function (req, res) {
+                    res.send('Got a POST request')
+                  })
+            </code>
+            <p>
+                Respond to a PUT request to the /user route:
+            </p>
+            <code>
+                app.put('/user', function (req, res) {
+                    res.send('Got a PUT request at /user')
+                  })
+            </code>
+            <p>Respond to a DELETE request to the /user route:</p>
+            <code>
+                app.delete('/user', function (req, res) {
+                    res.send('Got a DELETE request at /user')
+                  })
+            </code>
+            <p>For more details about routing, see the routing guide.</p>
         </section>
     </main>
 </body>
